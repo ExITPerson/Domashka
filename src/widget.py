@@ -1,8 +1,10 @@
+import datetime
+
 from masks import get_mask_account
 from masks import get_mask_card_number
 
 
-def mask_account_card(input_information):
+def mask_account_card(input_information: str) -> str:
     numbers = ''.join([str(num) for num in input_information if num.isdigit()])
     if len(numbers) == 20:
         return get_mask_account(numbers)
@@ -10,4 +12,6 @@ def mask_account_card(input_information):
         return get_mask_card_number(numbers)
 
 
-print(mask_account_card('Card 7365410843013587'))
+def get_date(data_time: str) -> str:
+    date = data_time[0:10]
+    return f'{date[-2:]}:{date[5:7]}:{date[0:4]}'
