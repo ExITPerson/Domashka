@@ -3,6 +3,8 @@ from typing import Any, Callable
 
 
 def log(filename: str = None) -> Any:
+    """ Декоратор, который выводит результат работы функции на консоль, либо создает файл с результатами"""
+
     def wrapper(func: Callable) -> Callable:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
@@ -13,7 +15,7 @@ def log(filename: str = None) -> Any:
                         result = func(*args, **kwargs)
                         f.write(f"Конец работы функции: {func.__name__}\nРезультат работы: {result}")
                     except Exception as e:
-                        return f.write(
+                        f.write(
                             f"""Конец работы функции: {func.__name__}\nОшибка: {e}\nВходные параметры: {args or kwargs}
 Исключение: {type(e).__name__}"""
                         )

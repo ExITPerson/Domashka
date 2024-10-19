@@ -31,6 +31,8 @@ def test_log(capsys) -> None:
 
 
 def test_log_to_create_a_file_positive() -> None:
+    """ Тестируем создание файла и содержание"""
+
     @log("log.txt")
     def positive_number_file(numb: int) -> str:
         if numb > 0:
@@ -50,6 +52,8 @@ def test_log_to_create_a_file_positive() -> None:
 
 
 def test_log_to_create_a_file_negative() -> None:
+    """ Тестирует создание файла и его содержание"""
+
     @log("log_negative.txt")
     def negative_number_file(numb: int) -> str:
         if numb > 0:
