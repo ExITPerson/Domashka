@@ -2,8 +2,10 @@ import os
 
 from src.decorator import log
 
-def test_log(capsys):
-    """ Тестируем вывод в консоль"""
+
+def test_log(capsys) -> None:
+    """Тестируем вывод в консоль"""
+
     @log()
     def positive_number(numb: int) -> str:
         if numb > 0:
@@ -19,22 +21,25 @@ def test_log(capsys):
     result = positive_number(-1)
     captured = capsys.readouterr()
     assert captured.out == "Начало работы функции: positive_number\n"
-    assert result == """Конец работы функции: positive_number
+    assert (
+        result
+        == """Конец работы функции: positive_number
 Ошибка: Число должно быть положительным
 Входные параметры: (-1,)
 Исключение: ValueError"""
+    )
 
 
-def test_log_to_create_a_file_positive():
+def test_log_to_create_a_file_positive() -> None:
     @log("log.txt")
-    def positive_number_file(numb: int):
+    def positive_number_file(numb: int) -> str:
         if numb > 0:
             return "Число положительное"
         else:
             raise ValueError("Число должно быть положительным")
 
     positive_number_file(2)
-    assert os.path.exists("log.txt") == True
+    assert os.path.exists("log.txt")
 
     with open("log.txt", "r", encoding="utf-8") as f:
         log_content = f.read()
@@ -44,9 +49,9 @@ def test_log_to_create_a_file_positive():
         assert "Результат работы: Число положительное" in log_content
 
 
-def test_log_to_create_a_file_negative():
+def test_log_to_create_a_file_negative() -> None:
     @log("log_negative.txt")
-    def negative_number_file(numb: int):
+    def negative_number_file(numb: int) -> str:
         if numb > 0:
             return "Число положительное"
         else:
@@ -63,6 +68,3 @@ def test_log_to_create_a_file_negative():
         assert "Ошибка: Число должно быть положительным" in log_content
         assert "Входные параметры: (-1,)" in log_content
         assert "Исключение: ValueError" in log_content
-
-
-

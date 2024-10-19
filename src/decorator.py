@@ -1,8 +1,9 @@
-from typing import Any
 from functools import wraps
+from typing import Any, Callable
 
-def log(filename: str = None) -> Any :
-    def wrapper(func):
+
+def log(filename: str = None) -> Any:
+    def wrapper(func: Callable) -> Callable:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
             if filename is not None:
@@ -12,21 +13,19 @@ def log(filename: str = None) -> Any :
                         result = func(*args, **kwargs)
                         f.write(f"Конец работы функции: {func.__name__}\nРезультат работы: {result}")
                     except Exception as e:
-                        return f.write(f"""Конец работы функции: {func.__name__} 
-Ошибка: {e}
-Входные параметры: {args or kwargs}
-Исключение: {type(e).__name__}
-""")
+                        return f.write(
+                            f"""Конец работы функции: {func.__name__}\nОшибка: {e}\nВходные параметры: {args or kwargs}
+Исключение: {type(e).__name__}"""
+                        )
             else:
                 print(f"Начало работы функции: {func.__name__}")
                 try:
                     result = func(*args, **kwargs)
                     return f"""Конец работы функции: {func.__name__}\nРезультат работы: {result}"""
                 except Exception as e:
-                    return f"""Конец работы функции: {func.__name__}
-Ошибка: {e}
-Входные параметры: {args or kwargs}
+                    return f"""Конец работы функции: {func.__name__}\nОшибка: {e}\nВходные параметры: {args or kwargs}
 Исключение: {type(e).__name__}"""
-        return inner
-    return wrapper
 
+        return inner
+
+    return wrapper
