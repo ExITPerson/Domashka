@@ -1,0 +1,6 @@
+Начало работы функции: mask_account_card
+
+Конец работы функции: mask_account_card 
+Ошибка: mask_account_card() missing 1 required positional argument: 'input_information'
+Входные параметры: {}
+Исключение: TypeError

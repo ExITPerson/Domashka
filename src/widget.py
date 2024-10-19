@@ -1,6 +1,8 @@
 from datetime import datetime
+from src.decorator import log
 
 
+@log("log.txt")
 def mask_account_card(input_information: str) -> str:
     """Функция маскирует данные карты, либо счета"""
     try:
