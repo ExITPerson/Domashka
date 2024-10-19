@@ -47,14 +47,14 @@ pytest --cov src --cov-report term-missing
 ````
 ======================================= test session starts ===========================================================
 platform win32 -- Python 3.12.6, pytest-8.3.3, pluggy-1.5.0
-rootdir:
 configfile: pyproject.toml
-plugins: cov-5.0.0
-collected 24 items                                                                                                                                                                 
+plugins: cov-5.0.0, xdist-3.6.1
+collected 27 items                                                                                                                                                                 
 
-tests\test_generator.py ........                                                 [ 33%]
-tests\test_masks.py ......                                                       [ 58%] 
-tests\test_processing.py ...                                                     [ 70%]
+tests\test_decorator.py ...                                                      [ 11%]
+tests\test_generator.py ........                                                 [ 40%]
+tests\test_masks.py ......                                                       [ 62%] 
+tests\test_processing.py ...                                                     [ 74%]
 tests\test_widget.py .......                                                     [100%]
 
 
@@ -66,9 +66,10 @@ src\masks.py           12      0   100%
 src\processing.py      17      0   100%
 src\widget.py          23      0   100%
 src\generators.py      22      0   100%
+src\decorator.py       22      0   100%
 -------------------------------------------------
-TOTAL                  74      0   100%
+TOTAL                  96      0   100%
 
 
-=============================== 24 passed in 1.15s ==================================================================== 
+=============================== 27 passed in 0.35s ==================================================================== 
 ````
