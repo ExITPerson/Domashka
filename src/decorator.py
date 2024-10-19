@@ -10,31 +10,23 @@ def log(filename: str = None) -> Any :
                     f.write(f"Начало работы функции: {func.__name__}\n")
                     try:
                         result = func(*args, **kwargs)
-                        f.write(f"""
-Конец работы функции: {func.__name__} 
-Результат работы: {result}""")
+                        f.write(f"Конец работы функции: {func.__name__}\nРезультат работы: {result}")
                     except Exception as e:
-                        return f.write(f"""
-Конец работы функции: {func.__name__} 
+                        return f.write(f"""Конец работы функции: {func.__name__} 
 Ошибка: {e}
 Входные параметры: {args or kwargs}
 Исключение: {type(e).__name__}
 """)
             else:
-                print(f"Начало работы функции\n {func.__name__}\n")
+                print(f"Начало работы функции: {func.__name__}")
                 try:
                     result = func(*args, **kwargs)
-                    return f"""
-Конец работы функции: {func.__name__} 
-Результат работы: {result}
-"""
+                    return f"""Конец работы функции: {func.__name__}\nРезультат работы: {result}"""
                 except Exception as e:
-                    return f"""
-Конец работы функции: {func.__name__} 
+                    return f"""Конец работы функции: {func.__name__}
 Ошибка: {e}
 Входные параметры: {args or kwargs}
-Исключение: {type(e).__name__}
-"""
+Исключение: {type(e).__name__}"""
         return inner
     return wrapper
 
